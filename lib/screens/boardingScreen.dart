@@ -16,12 +16,12 @@ class _BoardingScreenState extends State<BoardingScreen> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => inputScreen())
+        MaterialPageRoute(builder: (context) => InputScreen())
       );
     });
   }
 
-  @override //apa yang terjadi, class utama, kemudian state juga widget nya untuk ui, kemudian untuk apa override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -38,7 +38,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
             SizedBox(height: 10),
             Text(
               'Your Personal Diabetes diagnosis assistant for healthy lifestyle',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium, textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             CircularProgressIndicator(color: Colors.white),
