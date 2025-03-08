@@ -4,6 +4,7 @@ final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   primaryColor: Color(0xFFF14647), //0xFF + warna pilihan
   scaffoldBackgroundColor: Colors.white,
+  secondaryHeaderColor: Color(0xFF1F272D),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
       fontSize: 20,

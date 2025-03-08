@@ -12,8 +12,8 @@ class InputBox extends StatelessWidget {
   const InputBox({
     super.key,
     required this.label,
-    required this.controller,
-    this.hint = '',
+    required this.controller, //required karena controller wajib diisi
+    this.hint = '', //without required because it's optional
     this.keyboardType = TextInputType.text,
   });
 
@@ -24,13 +24,20 @@ class InputBox extends StatelessWidget {
       children: [
         Text(label, style: Theme.of(context).textTheme.bodyMedium), //menampilkan label
         const SizedBox(height: 8,),
+        //input box textfield
         TextField(
           controller: controller,
           keyboardType: keyboardType,
+          cursorColor: Theme.of(context).primaryColor,
+          style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
           decoration: InputDecoration(
             hintText: hint,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Theme.of(context).primaryColor),
+              borderRadius: BorderRadius.circular(8),
+            )
           ),
         ),
         const SizedBox(height: 16,), //jarak antar textfield ke2 nanti.

@@ -13,6 +13,10 @@ class _BoardingScreenState extends State<BoardingScreen> {
   @override
   void initState() {
     super.initState();
+    // Menutup keyboard jika terbuka
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusScope.of(context).unfocus();
+    });
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
