@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'themes/appTheme.dart';
-import 'screens/boardingScreen.dart';
+import 'screens/splashScreen.dart';
 // import 'package:tflite_flutter/tflite_flutter.dart';
 
 void main() {
