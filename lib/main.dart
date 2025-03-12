@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'themes/appTheme.dart';
 import 'screens/splashScreen.dart';
+import 'screens/boardingScreen.dart';
 // import 'package:tflite_flutter/tflite_flutter.dart';
 
 void main() {
@@ -28,7 +29,7 @@ class _MadhumehaAppState extends State<MadhumehaApp> {
     return MaterialApp(
       title: 'Madhumeha',
       theme: isDarkMode ? AppTheme.dark : AppTheme.light,
-      home: const BoardingScreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

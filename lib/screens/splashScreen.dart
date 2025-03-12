@@ -1,15 +1,16 @@
+import 'package:Madhumeha/screens/boardingScreen.dart';
 import 'package:flutter/material.dart';
 import 'inputScreen.dart';
 // import 'package:animated_text_kit/animated_text_kit.dart';
 
-class BoardingScreen extends StatefulWidget {
-  const BoardingScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<BoardingScreen> createState() => _BoardingScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _BoardingScreenState extends State<BoardingScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -20,7 +21,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => InputScreen())
+        MaterialPageRoute(builder: (context) => BoardingScreen())
       );
     });
   }
