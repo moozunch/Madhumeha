@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/inputBox.dart';
 import 'package:Madhumeha/widgets/inputSlider.dart';
 import 'package:Madhumeha/widgets/dropDown.dart';
+import 'package:intl/intl.dart';
 
 class InputScreen extends StatefulWidget {
   InputScreen(
@@ -27,7 +28,7 @@ class _InputScreenState extends State<InputScreen> {
 
 
   //Method untuk BirtDate Picker
-  void _selectDate() async {
+  Future<void> _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
@@ -37,7 +38,7 @@ class _InputScreenState extends State<InputScreen> {
 
   if (picked != null) {
     setState(() {
-      birthDateController.text = picked.toString();});
+      birthDateController.text = DateFormat('dd-MM-yyyy').format(picked);});
     }
   }
 
@@ -104,7 +105,8 @@ class _InputScreenState extends State<InputScreen> {
                   label: 'Birth Date',
                   controller: birthDateController,
                   hint: 'dd-mm-yyyy',
-                  onTap: _selectDate),
+                  isDatePicker: true,
+                  onTap: () => _selectDate(context)),
                 SizedBox(height: 20),
                 //Family History Diabetes
                 SizedBox(
