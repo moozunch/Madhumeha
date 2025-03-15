@@ -16,24 +16,28 @@ class InputBox extends StatelessWidget {
     required this.controller,
     this.hint = '',
     this.keyboardType = TextInputType.text,
-    this.onTap
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: Theme.of(context).textTheme.bodyMedium),
-        const SizedBox(height: 8,),
-        GestureDetector(
-          onTap: onTap,
-          child: AbsorbPointer(
-            // agar input box tidak langsung aktifin keyboard
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus(); // menutup keyboard jika tap di luar input
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+          )),
+          const SizedBox(height: 8,),
+          GestureDetector(
+            onTap: onTap,
             child: ConstrainedBox(
               constraints: const BoxConstraints(
-                maxWidth: 300,
-              ),
+                maxWidth: 400,
+              ), //Untuk ukuran lebar text field
               child: TextField(
                 controller: controller,
                 keyboardType: keyboardType,
@@ -48,12 +52,13 @@ class InputBox extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
+                autofocus: false,
               ),
             ),
           ),
-        ),
-        const SizedBox(height: 16,),
-      ],
+          const SizedBox(height: 16,),
+        ],
+      ),
     );
   }
 }

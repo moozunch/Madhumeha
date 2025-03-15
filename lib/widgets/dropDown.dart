@@ -31,12 +31,18 @@ class _DropDownState extends State<DropDown> {
   //widgeet
   @override
   Widget build(BuildContext context){
-    return Column(
+    return GestureDetector(
+        onTap: () {
+      FocusScope.of(context).unfocus(); // menutup keyboard jika tap di luar input
+    },
+      child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           widget.label,
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+          )
         ),
         const SizedBox(height: 8,),
         DropdownButtonFormField<String>(
@@ -58,6 +64,8 @@ class _DropDownState extends State<DropDown> {
   contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
   focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Theme.of(context).primaryColor )),
-  ),),]);
+  ),
+          autofocus: false,),
+      ]) );
   }//keadaan awalnya
 }

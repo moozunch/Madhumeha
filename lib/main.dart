@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'themes/appTheme.dart';
 import 'screens/splashScreen.dart';
+import 'themes/darkTheme.dart';
+import 'themes/lightTheme.dart';
 import 'screens/boardingScreen.dart';
 // import 'package:tflite_flutter/tflite_flutter.dart';
 

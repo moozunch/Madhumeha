@@ -15,10 +15,10 @@ class BoardingScreen extends StatelessWidget {
             Icon(Icons.import_contacts),
             SizedBox(height: 20,),
             Text(
-              'Healthy lifestyle kamu dimulai sekarang. \n Before we start let’s fill all the information first',
-              style: Theme.of(context).textTheme.bodyMedium,
+              'Healthy lifestyle kamu dimulai sekarang. \n Before we start let’s fill all \nthe information first.',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
-              maxLines: 2,
+              maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 10,),
