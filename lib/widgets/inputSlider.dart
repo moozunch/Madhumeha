@@ -35,7 +35,9 @@ class _SliderState extends State<InputSlider> {
       children: [
         Text(
           widget.label,
-          style: Theme.of(context).textTheme.bodyMedium),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+          )),
           const SizedBox(height: 8),
         Slider(
             value: _currentValue,
