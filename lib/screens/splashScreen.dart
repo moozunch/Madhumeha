@@ -1,6 +1,6 @@
 import 'package:Madhumeha/screens/boardingScreen.dart';
 import 'package:flutter/material.dart';
-import 'inputScreen.dart';
+import 'input_screens/personalInformation.dart';
 // import 'package:animated_text_kit/animated_text_kit.dart';
 
 class SplashScreen extends StatefulWidget {

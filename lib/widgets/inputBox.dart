@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 class InputBox extends StatelessWidget {
   final String label;
@@ -6,6 +7,10 @@ class InputBox extends StatelessWidget {
   final String hint;
   final TextInputType keyboardType;
   final bool isDatePicker;
+  final bool isNumberPicker;
+  final int? min;
+  final int? max; //nggak yakin integer or not
+  final Function(int)? onNumberPicked;
   final VoidCallback? onTap; // untuk trigger DatePicker atau NumberPicker
 
   const InputBox({
@@ -14,6 +19,10 @@ class InputBox extends StatelessWidget {
     required this.controller,
     this.hint = '',
     this.isDatePicker = false,
+    this.isNumberPicker = false,
+    this.min,
+    this.max,
+    this.onNumberPicked,
     this.keyboardType = TextInputType.text,
     this.onTap,
   }) : super(key: key);
@@ -37,8 +46,8 @@ class InputBox extends StatelessWidget {
             keyboardType: keyboardType,
             cursorColor: Theme.of(context).primaryColor,
             style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
-            readOnly: isDatePicker, // Mencegah keyboard muncul
-            onTap: isDatePicker ? onTap : null, // Panggil onTap jika DatePicker
+            readOnly: isDatePicker || isNumberPicker, // Mencegah keyboard muncul
+            onTap: isDatePicker || isNumberPicker ? () => _showPicker(context) : onTap, // Panggil onTap jika DatePicker
             decoration: InputDecoration(
               hintText: hint,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
@@ -49,7 +58,7 @@ class InputBox extends StatelessWidget {
               ),
               suffixIcon: isDatePicker
                   ? Icon(Icons.calendar_today, color: Theme.of(context).primaryColor)
-                  : null, // Ikon hanya jika DatePicker
+                  : (isNumberPicker ? Icon(Icons.arrow_drop_down, color: Theme.of(context).primaryColor) : null), // Ikon hanya jika DatePicker atau numberPicker
             ),
           ),
         ),
@@ -57,4 +66,50 @@ class InputBox extends StatelessWidget {
       ],
     );
   }
+  void _showPicker(BuildContext context) {
+    if (isNumberPicker && min != null && max != null && onNumberPicked != null) {
+      _showNumberPicker(context);
+    }
+  }
+
+  //Menampilkan modal bottom sheet dengan NumberPicker
+  void _showNumberPicker(BuildContext context) {
+    int currentValue = int.tryParse(controller.text) ?? min!; // Jika tidak bisa di-parse, gunakan nilai minimum
+
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 250,
+            padding: EdgeInsets.all(16), //edgeinsets.all untuk memberikan padding pada semua sisi
+            child: Column(
+              children: [
+                Text(
+                  "Pilih ${label.toLowerCase()}",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                ),
+                SizedBox(height: 16),
+                NumberPicker(
+                    minValue: min!,
+                    maxValue: max!,
+                    value: currentValue,
+                    onChanged: (value) {
+                      currentValue = value;
+                    },
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.text = currentValue.toString();
+                    onNumberPicked!(currentValue);
+                    Navigator.pop(context);
+                  },
+                  child: Text("OK"),
+                )
+              ],
+            ),
+          );
+        }
+    );
+  }
 }
+

@@ -1,4 +1,4 @@
-import 'package:Madhumeha/screens/inputScreen.dart';
+import 'package:Madhumeha/screens/input_screens/personalInformation.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/primaryButton.dart';
 
@@ -28,7 +28,7 @@ class BoardingScreen extends StatelessWidget {
                 textColor: Theme.of(context).scaffoldBackgroundColor,
                 width: 180,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => InputScreen() ));}
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PersonalInformation() ));}
             )
           ],
         ),

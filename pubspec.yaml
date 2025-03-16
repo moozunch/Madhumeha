@@ -39,6 +39,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   google_fonts: ^6.2.1
   intl: ^0.20.2
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:
