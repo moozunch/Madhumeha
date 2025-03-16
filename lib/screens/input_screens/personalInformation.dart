@@ -1,18 +1,18 @@
 import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/inputBox.dart';
-import 'package:Madhumeha/widgets/inputSlider.dart';
 import 'package:Madhumeha/widgets/dropDown.dart';
 import 'package:intl/intl.dart';
+import 'package:Madhumeha/screens/input_screens/bmi.dart';
 
-class InputScreen extends StatefulWidget {
-  InputScreen(
+class PersonalInformation extends StatefulWidget {
+  PersonalInformation(
       {super.key}); // Tambahkan super.key untuk StatelessWidget //jadi kalau di scroll dia tidak berubah
   @override
-  State<StatefulWidget> createState() => _InputScreenState();
+  State<StatefulWidget> createState() => _PersonalInformationState();
 }
 
-class _InputScreenState extends State<InputScreen> {
+class _PersonalInformationState extends State<PersonalInformation> {
   //Input Box
   TextEditingController nameController = TextEditingController(); //membuat controller manggil TextEditingController dari inputBox.dart
   final TextEditingController birthDateController = TextEditingController();
@@ -25,6 +25,8 @@ class _InputScreenState extends State<InputScreen> {
 
   //Toggle Primary Button
   bool familyHistoryDiabetes = false;
+  bool gestationalDiabetes = false;
+  bool polycysticOvarySyndrome = false;
 
 
   //Method untuk BirtDate Picker
@@ -48,6 +50,18 @@ class _InputScreenState extends State<InputScreen> {
       familyHistoryDiabetes = value;
     });
 }
+
+  void _gestationalDiabetes(bool value) {
+    setState(() {
+      gestationalDiabetes = value;
+    });
+}
+
+  void _polycysticOvarySyndrome(bool value) {
+    setState(() {
+      polycysticOvarySyndrome = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,8 +154,89 @@ class _InputScreenState extends State<InputScreen> {
                             width: double.infinity, //menggunakan double.infinity agar button memenuhi layar
                             textColor: familyHistoryDiabetes ? Theme.of(context).scaffoldBackgroundColor : Theme.of(context).textTheme.bodySmall!.color!,
                             onPressed: () => _familyHistoryDiabetes(false))
-                    )
+                    ),
                   ],
+                ),
+                //Gestational Diabetes
+                SizedBox(height: 20),
+                SizedBox(
+                  child: Text(
+                    'Gestational Diabetes',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+                SizedBox(height: 8),
+                Row(
+                  children: [
+                    //True
+                    Expanded(
+                        child: PrimaryButton(
+                            label: 'True',
+                            isToggle: true,
+                            isSelected: gestationalDiabetes,
+                            color: gestationalDiabetes ? Theme.of(context).primaryColor : Theme.of(context).primaryColorDark,
+                            textColor: gestationalDiabetes ? Theme.of(context).scaffoldBackgroundColor : Theme.of(context).textTheme.bodySmall!.color!,
+                            onPressed: () => _gestationalDiabetes(true))
+                    ),
+                    SizedBox(width: 8),
+                    //False
+                    Expanded(
+                        child: PrimaryButton(
+                            label: 'False',
+                            isToggle: true,
+                            isSelected: !gestationalDiabetes,
+                            color: gestationalDiabetes ? Theme.of(context).primaryColor : Theme.of(context).primaryColorDark,
+                            width: double.infinity, //menggunakan double.infinity agar button memenuhi layar
+                            textColor: gestationalDiabetes ? Theme.of(context).scaffoldBackgroundColor : Theme.of(context).textTheme.bodySmall!.color!,
+                            onPressed: () => _gestationalDiabetes(false))
+                    ),
+                  ],
+                ),
+                //Polycystic Ovary Syndrome
+                SizedBox(height: 20),
+                SizedBox(
+                  child: Text(
+                    'Polycystic Ovary Syndrome',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+                SizedBox(height: 8),
+                Row(
+                  children: [
+                    //True
+                    Expanded(
+                        child: PrimaryButton(
+                            label: 'True',
+                            isToggle: true,
+                            isSelected: polycysticOvarySyndrome,
+                            color: polycysticOvarySyndrome ? Theme.of(context).primaryColor : Theme.of(context).primaryColorDark,
+                            textColor: polycysticOvarySyndrome ? Theme.of(context).scaffoldBackgroundColor : Theme.of(context).textTheme.bodySmall!.color!,
+                            onPressed: () => _polycysticOvarySyndrome(true))
+                    ),
+                    SizedBox(width: 8),
+                    //False
+                    Expanded(
+                        child: PrimaryButton(
+                            label: 'False',
+                            isToggle: true,
+                            isSelected: polycysticOvarySyndrome,
+                            color: polycysticOvarySyndrome ? Theme.of(context).primaryColor : Theme.of(context).primaryColorDark,
+                            width: double.infinity, //menggunakan double.infinity agar button memenuhi layar
+                            textColor: polycysticOvarySyndrome ? Theme.of(context).scaffoldBackgroundColor : Theme.of(context).textTheme.bodySmall!.color!,
+                            onPressed: () => _polycysticOvarySyndrome(false))
+                    ),
+                  ],
+                ),
+                //
+                PrimaryButton(
+                    label: 'Next',
+                    color: Theme.of(context).primaryColor,
+                    textColor: Theme.of(context).scaffoldBackgroundColor,
+                    width: 180,
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => BMI() ));}
                 )
               ],
             ),
