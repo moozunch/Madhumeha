@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class InputBox extends StatelessWidget {
@@ -47,7 +48,7 @@ class InputBox extends StatelessWidget {
             cursorColor: Theme.of(context).primaryColor,
             style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
             readOnly: isDatePicker || isNumberPicker, // Mencegah keyboard muncul
-            onTap: isDatePicker || isNumberPicker ? () => _showPicker(context) : onTap, // Panggil onTap jika DatePicker
+            onTap: isDatePicker || isNumberPicker ? () => _showPicker(context) : onTap,
             decoration: InputDecoration(
               hintText: hint,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
@@ -69,47 +70,95 @@ class InputBox extends StatelessWidget {
   void _showPicker(BuildContext context) {
     if (isNumberPicker && min != null && max != null && onNumberPicked != null) {
       _showNumberPicker(context);
+    } else if (isDatePicker) {
+      _showDatePicker(context);
     }
   }
 
+
+
   //Menampilkan modal bottom sheet dengan NumberPicker
   void _showNumberPicker(BuildContext context) {
-    int currentValue = int.tryParse(controller.text) ?? min!; // Jika tidak bisa di-parse, gunakan nilai minimum
+    int currentValue = int.tryParse(controller.text) ?? min!;
 
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            height: 250,
-            padding: EdgeInsets.all(16), //edgeinsets.all untuk memberikan padding pada semua sisi
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          alignment: Alignment.center, // Buat di tengah
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  "Pilih ${label.toLowerCase()}",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
-                ),
-                SizedBox(height: 16),
-                NumberPicker(
-                    minValue: min!,
-                    maxValue: max!,
-                    value: currentValue,
-                    onChanged: (value) {
-                      currentValue = value;
-                    },
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.text = currentValue.toString();
-                    onNumberPicked!(currentValue);
-                    Navigator.pop(context);
+                Text("Your $label", style: Theme.of(context).textTheme.titleMedium),
+                const SizedBox(height: 12),
+                StatefulBuilder(
+                  builder: (context, setState) {
+                    return NumberPicker(
+                      value: currentValue,
+                      minValue: min!,
+                      maxValue: max!,
+                      selectedTextStyle: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
+                      onChanged: (value) {
+                        setState(() {
+                          currentValue = value;
+                        });
+                      },
+                    );
                   },
-                  child: Text("OK"),
+                ),
+                const SizedBox(height: 12),
+                //Bagian bawah
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context), // Tutup tanpa menyimpan
+                      child: Text("Batal", style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        controller.text = currentValue.toString(); // Simpan pilihan
+                        onNumberPicked!(currentValue);
+                        Navigator.pop(context);
+                      },
+                      child: Text("OK", style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),
+                    ),
+                  ],
                 )
               ],
             ),
-          );
-        }
+          ),
+        );
+      },
     );
+  }
+
+  void _showDatePicker(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(primary: Theme.of(context).primaryColor),
+            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (pickedDate != null) {
+      String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+      controller.text = formattedDate;
+    }
   }
 }
 
