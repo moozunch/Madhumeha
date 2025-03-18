@@ -70,14 +70,31 @@ class _BMIState extends State<BMI> {
                     },
                   ),
                   SizedBox(height: 40),
-                  //
-                  PrimaryButton(
-                      label: 'Next',
-                      color: Theme.of(context).primaryColor,
-                      textColor: Theme.of(context).scaffoldBackgroundColor,
-                      width: 180,
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ResultsBMI() ));}
+                  Row(
+                      children: [
+                        Expanded(
+                          child: PrimaryButton(
+                              label: 'Back',
+                              isToggle: true,
+                              color: Theme.of(context).primaryColorDark,
+                              textColor: Theme.of(context).scaffoldBackgroundColor,
+                              width: 180,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              }),),
+                        SizedBox(width: 8),
+                        Expanded(
+                            child: PrimaryButton(
+                                label: 'Next',
+                                color: Theme.of(context).primaryColor,
+                                textColor: Theme.of(context).scaffoldBackgroundColor,
+                                width: 180,
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => ResultsBMI()));
+                                })
+                        ),
+                      ]
                   )
                 ],
               ),

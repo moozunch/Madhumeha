@@ -39,6 +39,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
         birthDateController.text = DateFormat('dd-MM-yyyy').format(picked);
         age = calculateAge(picked);
         ageController.text = age.toString(); // Menampilkan umur
+        // print("Selected Birthdate: ${birthDateController.text}");
+        // print("Calculated Age: $age");
       });
     }
   }
@@ -268,15 +270,33 @@ class _PersonalInformationState extends State<PersonalInformation> {
                     ],
                   ),
                   SizedBox(height: 40),
-                  PrimaryButton(
-                      label: 'Next',
-                      color: Theme.of(context).primaryColor,
-                      textColor: Theme.of(context).scaffoldBackgroundColor,
-                      width: 180,
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => BMI()));
-                      })
+                  Row(
+                      children: [
+                        Expanded(
+                            child: PrimaryButton(
+                                label: 'Back',
+                                isToggle: true,
+                                color: Theme.of(context).primaryColorDark,
+                                textColor: Theme.of(context).scaffoldBackgroundColor,
+                                width: 180,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),),
+                            SizedBox(width: 8),
+                            Expanded(
+                                child: PrimaryButton(
+                                  label: 'Next',
+                                  color: Theme.of(context).primaryColor,
+                                  textColor: Theme.of(context).scaffoldBackgroundColor,
+                                  width: 180,
+                                  onPressed: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => BMI()));
+                                  })
+                        ),
+                      ]
+                  )
+
                 ],
               ),
             )
