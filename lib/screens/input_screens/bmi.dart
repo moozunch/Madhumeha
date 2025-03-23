@@ -91,7 +91,10 @@ class _BMIState extends State<BMI> {
                                 width: 180,
                                 onPressed: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) => ResultsBMI()));
+                                      MaterialPageRoute(builder: (context) => ResultsBMI(
+                                        heightController: heightController,
+                                        weightController: weightController,
+                                      )));
                                 })
                         ),
                       ]
