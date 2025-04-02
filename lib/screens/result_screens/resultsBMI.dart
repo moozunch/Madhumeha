@@ -1,30 +1,39 @@
 import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
+import 'package:Madhumeha/models/diabetesInput.dart';
 
-class ResultsBMI extends StatelessWidget {
-  final TextEditingController heightController;
-  final TextEditingController weightController;
+class ResultsBMI extends StatefulWidget {
+  final DiabetesInputModel diabetesInput;
+  //jadi stateful soalnya mau menyimpan data ke model
+  ResultsBMI({required this.diabetesInput});
 
-  ResultsBMI({
-    required this.heightController,
-    required this.weightController,
-  });
+  @override
+  _ResultsBMIState createState() => _ResultsBMIState();
+}
 
-  /// Menghitung BMI dan menentukan kategori
-  Map<String, dynamic> calculateBMI() {
-    double height = double.tryParse(heightController.text) ?? 0;
-    double weight = double.tryParse(weightController.text) ?? 0;
+class _ResultsBMIState extends State<ResultsBMI> {
+  late double bmi;
+  late String category;
+
+  @override
+  void initState() {
+    super.initState();
+    _calculateAndSetBMI();
+  }
+
+  void _calculateAndSetBMI() {
+    double height = widget.diabetesInput.height ?? 0.0; //karena tipe double? (nullable double) dan height disini height disini double tidak boleh null, maka buat nullaware operator
+    double weight = widget.diabetesInput.weight ?? 0.0;
 
     if (height == 0 || weight == 0) {
-      return {
-        "bmi": "Invalid",
-        "category": "Please enter valid values",
-      };
+      bmi = 0;
+      category = "Please enter valid values";
+      return;
     }
 
-    double bmi = weight / ((height / 100) * (height / 100));
+    bmi = weight / ((height / 100) * (height / 100));
+    widget.diabetesInput.bmi = bmi; // Menyimpan BMI ke model
 
-    String category;
     if (bmi < 18.5) {
       category = "Underweight";
     } else if (bmi >= 18.5 && bmi < 24.9) {
@@ -34,17 +43,10 @@ class ResultsBMI extends StatelessWidget {
     } else {
       category = "Obese";
     }
-
-    return {
-      "bmi": bmi.toStringAsFixed(2),
-      "category": category,
-    };
   }
 
   @override
   Widget build(BuildContext context) {
-    final result = calculateBMI();
-
     return Scaffold(
       body: Column(
         children: [
@@ -64,12 +66,12 @@ class ResultsBMI extends StatelessWidget {
                   children: [
                     const SizedBox(height: 40),
                     Text(
-                      result["category"], // Menampilkan kategori
+                      category, // Menampilkan kategori BMI
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     const SizedBox(height: 40),
                     Text(
-                      result["bmi"], // Menampilkan hasil BMI
+                      bmi == 0 ? "Invalid" : bmi.toStringAsFixed(2), // Menampilkan hasil BMI
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     const SizedBox(height: 40),
@@ -95,6 +97,7 @@ class ResultsBMI extends StatelessWidget {
                             textColor: Theme.of(context).scaffoldBackgroundColor,
                             width: 180,
                             onPressed: () {
+                              // Tambahkan navigasi ke screen berikutnya
                             },
                           ),
                         ),

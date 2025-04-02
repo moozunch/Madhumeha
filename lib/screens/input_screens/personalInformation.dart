@@ -4,6 +4,7 @@ import 'package:Madhumeha/widgets/inputBox.dart';
 import 'package:Madhumeha/widgets/dropDown.dart';
 import 'package:intl/intl.dart';
 import 'package:Madhumeha/screens/input_screens/bmi.dart';
+import 'package:Madhumeha/models/diabetesInput.dart';
 
 class PersonalInformation extends StatefulWidget {
   PersonalInformation({super.key});
@@ -12,18 +13,16 @@ class PersonalInformation extends StatefulWidget {
 }
 
 class _PersonalInformationState extends State<PersonalInformation> {
+  DiabetesInputModel diabetesInput = DiabetesInputModel();
+
   TextEditingController nameController = TextEditingController();
   final TextEditingController birthDateController = TextEditingController();
   TextEditingController ageController = TextEditingController();
 
-  double alchoholConsumption = 0.0;
-
   String? selectedGender;
-
   bool familyHistoryDiabetes = false;
   bool gestationalDiabetes = false;
   bool polycysticOvarySyndrome = false;
-
   int age = 0;
 
   Future<void> _selectDate(BuildContext context) async {
@@ -41,26 +40,37 @@ class _PersonalInformationState extends State<PersonalInformation> {
         ageController.text = age.toString(); // Menampilkan umur
         // print("Selected Birthdate: ${birthDateController.text}");
         // print("Calculated Age: $age");
+        diabetesInput.age = age; //Simpan ke model
       });
     }
   }
 
 
+  void _updateGender(String? value) {
+    setState(() {
+      selectedGender = value;
+      diabetesInput.gender = (value == "Male") ? 1 : 0;
+    });
+  }
+
   void _familyHistoryDiabetes(bool value) {
     setState(() {
       familyHistoryDiabetes = value;
+      diabetesInput.familyHistoryDiabetes = value ? 1 : 0;
     });
   }
 
   void _gestationalDiabetes(bool value) {
     setState(() {
       gestationalDiabetes = value;
+      diabetesInput.gestationalDiabetes = value ? 1 : 0;
     });
   }
 
   void _polycysticOvarySyndrome(bool value) {
     setState(() {
       polycysticOvarySyndrome = value;
+      diabetesInput.polycysticOvarySyndrome = value ? 1 : 0;
     });
   }
 
@@ -102,13 +112,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                     label: 'Gender',
                     items: ['Select Gender', 'Male', 'Female'],
                     initialValue: selectedGender ?? 'Select Gender',
-                    onChanged: (value) {
-                      if (value != 'Select Gender') {
-                        setState(() {
-                          selectedGender = value;
-                        });
-                      }
-                    },
+                    onChanged: _updateGender,
                   ),
                   const SizedBox(height: 20),
                   InputBox(
@@ -291,7 +295,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                   width: 180,
                                   onPressed: () {
                                     Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) => BMI()));
+                                        MaterialPageRoute(builder: (context) => BMI(diabetesInput: diabetesInput)));
                                   })
                         ),
                       ]
