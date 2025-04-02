@@ -1,12 +1,13 @@
 import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/inputBox.dart';
-import 'package:Madhumeha/screens/input_screens/resultsBMI.dart';
+import 'package:Madhumeha/screens/result_screens/resultsBMI.dart';
+import 'package:Madhumeha/models/diabetesInput.dart';
 
 
 class BMI extends StatefulWidget {
-  BMI(
-  {super.key});
+  final DiabetesInputModel diabetesInput; //karena dijadikan parameter, perlu diinisialisasi deluan
+  BMI({super.key, required this.diabetesInput}); //seketika class ini jadi perlu parameter, ini disebut constructor
   @override
   State<StatefulWidget> createState() => _BMIState();
 }
@@ -15,6 +16,14 @@ class _BMIState extends State<BMI> {
   //Input Box - numberPicker
   final TextEditingController heightController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
+
+  @override
+  void initState(){
+    super.initState();
+    //// Set nilai awal jika sudah ada data di model
+    heightController.text = widget.diabetesInput.height.toString();
+    weightController.text = widget.diabetesInput.weight.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +63,10 @@ class _BMIState extends State<BMI> {
                       max: 280,
                       hint: 'cm',
                       onNumberPicked: (value) {
-                        heightController.text = value.toString();
+                        setState(() {
+                          heightController.text = value.toString();
+                          widget.diabetesInput.height = value.toDouble();
+                        });
                       },
                   ),
                   SizedBox(height: 20),
@@ -67,6 +79,7 @@ class _BMIState extends State<BMI> {
                     hint: 'kg',
                     onNumberPicked: (value) {
                       weightController.text = value.toString();
+                      widget.diabetesInput.weight = value.toDouble();
                     },
                   ),
                   SizedBox(height: 40),
@@ -90,10 +103,14 @@ class _BMIState extends State<BMI> {
                                 textColor: Theme.of(context).scaffoldBackgroundColor,
                                 width: 180,
                                 onPressed: () {
+                                  setState(() {
+                                    widget.diabetesInput.height = double.tryParse(heightController.text) ?? 0;
+                                    widget.diabetesInput.weight = double.tryParse(weightController.text) ?? 0;
+                                  });
+
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) => ResultsBMI(
-                                        heightController: heightController,
-                                        weightController: weightController,
+                                        diabetesInput: widget.diabetesInput,
                                       )));
                                 })
                         ),
