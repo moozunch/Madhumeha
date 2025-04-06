@@ -1,3 +1,4 @@
+import 'package:Madhumeha/screens/input_screens/lifeQuality.dart';
 import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/inputBox.dart';
@@ -162,8 +163,8 @@ class _LifestyleState extends State<Lifestyle> {
                                 textColor: Theme.of(context).scaffoldBackgroundColor,
                                 width: 180,
                                 onPressed: () {
-                                  // Navigator.push(context,
-                                  //     MaterialPageRoute(builder: (context) => Lifestyle(diabetesInput: widget.diabetesInput)));
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => LifeQuality(diabetesInput: widget.diabetesInput)));
                                 })
                         ),
                       ]
