@@ -2,7 +2,7 @@ import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/inputBox.dart';
 import 'package:Madhumeha/widgets/dropDown.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart'; // DateFormat
 import 'package:Madhumeha/screens/input_screens/bmi.dart';
 import 'package:Madhumeha/models/diabetesInput.dart';
 
@@ -13,12 +13,14 @@ class PersonalInformation extends StatefulWidget {
 }
 
 class _PersonalInformationState extends State<PersonalInformation> {
-  DiabetesInputModel diabetesInput = DiabetesInputModel();
+  DiabetesInputModel diabetesInput = DiabetesInputModel(); //karena diawal halaman, tidak perlu parameter awal kan
 
+  // Yang input ketik
   TextEditingController nameController = TextEditingController();
   final TextEditingController birthDateController = TextEditingController();
   TextEditingController ageController = TextEditingController();
 
+  // Yang input pilih
   String? selectedGender;
   bool familyHistoryDiabetes = false;
   bool gestationalDiabetes = false;

@@ -15,7 +15,7 @@ class BoardingScreen extends StatelessWidget {
             Icon(Icons.import_contacts),
             SizedBox(height: 20,),
             Text(
-              'Healthy lifestyle kamu dimulai sekarang. \n Before we start let’s fill all \nthe information first.',
+              'Healthy lifestyle.dart kamu dimulai sekarang. \n Before we start let’s fill all \nthe information first.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
               maxLines: 3,
