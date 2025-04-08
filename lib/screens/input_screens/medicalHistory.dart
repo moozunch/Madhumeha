@@ -1,4 +1,5 @@
 import 'package:Madhumeha/screens/input_screens/lifeQuality.dart';
+import 'package:Madhumeha/screens/input_screens/prescribedMedication.dart';
 import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/inputSlider.dart';
@@ -317,7 +318,7 @@ class _MedicalHistoryState extends State<MedicalHistory> {
                                 width: 180,
                                 onPressed: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) => MedicalHistory(diabetesInput: widget.diabetesInput)));
+                                      MaterialPageRoute(builder: (context) => PrescribedMedication(diabetesInput: widget.diabetesInput)));
                                 })
                         ),
                       ]
