@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/inputSlider.dart';
 import 'package:Madhumeha/models/diabetesInput.dart';
 
+import '../../widgets/inputBox.dart';
+
 class MedicalHistory extends StatefulWidget {
   final DiabetesInputModel diabetesInput; //karena dijadikan parameter, perlu diinisialisasi deluan
   MedicalHistory({super.key, required this.diabetesInput}); //seketika class ini jadi perlu parameter, ini disebut constructor
@@ -17,23 +19,28 @@ class _MedicalHistoryState extends State<MedicalHistory> {
 
   final TextEditingController systolicBloodPressureController = TextEditingController();
   final TextEditingController diastolicBloodPressureController = TextEditingController();
-  final TextEditingController fastingBloodSugar = TextEditingController();
-  final TextEditingController hbA1c = TextEditingController();
-  final TextEditingController serumCreatinine = TextEditingController();
-  final TextEditingController bunLevels = TextEditingController();
-  final TextEditingController cholesterolTotal = TextEditingController();
-  final TextEditingController cholesterolldl = TextEditingController();
-  final TextEditingController cholesterolhdl = TextEditingController();
-  final TextEditingController cholesteroltriglycerides = TextEditingController();
+  final TextEditingController fastingBloodSugarController = TextEditingController();
+  final TextEditingController hbA1cController = TextEditingController();
+  final TextEditingController serumCreatinineController = TextEditingController();
+  final TextEditingController bunLevelsController = TextEditingController();
+  final TextEditingController cholesterolTotalController = TextEditingController();
+  final TextEditingController cholesterolLDLController = TextEditingController();
+  final TextEditingController cholesterolHDLController = TextEditingController();
+  final TextEditingController cholesterolTriglyceridesController = TextEditingController();
 
 
   @override
   void initState() {
     systolicBloodPressureController.text = widget.diabetesInput.systolicBloodPressure.toString();
     diastolicBloodPressureController.text = widget.diabetesInput.diastolicBloodPressure.toString();
-    fastingBloodSugar.text = widget.diabetesInput.fastingBloodSugar.toString();
-    hbA1c.text = widget.diabetesInput.hbA1c.toString();
-    serumCreatinine.text = widget.diabetesInput.serumCreatinine.toString();
+    fastingBloodSugarController.text = widget.diabetesInput.fastingBloodSugar.toString();
+    hbA1cController.text = widget.diabetesInput.hbA1c.toString();
+    serumCreatinineController.text = widget.diabetesInput.serumCreatinine.toString();
+    bunLevelsController.text = widget.diabetesInput.bunLevels.toString();
+    cholesterolTotalController.text = widget.diabetesInput.cholesterolTotal.toString();
+    cholesterolLDLController.text = widget.diabetesInput.cholesterolLDL.toString();
+    cholesterolHDLController.text = widget.diabetesInput.cholesterolHDL.toString();
+    cholesterolTriglyceridesController.text = widget.diabetesInput.cholesterolTriglycerides.toString();
   }
 
   void _previousPreDiabetes(bool value) {
@@ -159,119 +166,132 @@ class _MedicalHistoryState extends State<MedicalHistory> {
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'Systolic Blood Pressure',
+                    controller: systolicBloodPressureController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 80,
+                    max: 240,
+                    hint: 'mmHg',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      systolicBloodPressureController.text = value.toString();
+                      widget.diabetesInput.systolicBloodPressure = value.toInt();
                     },
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'Diastolic Blood Pressure',
+                    controller: diastolicBloodPressureController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 50,
+                    max: 160,
+                    hint: 'mmHg',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      diastolicBloodPressureController.text = value.toString();
+                      widget.diabetesInput.diastolicBloodPressure = value.toInt();
                     },
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'Fasting Blood Sugar',
+                    controller: fastingBloodSugarController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 50,
+                    max: 250,
+                    hint: 'mg/dL',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      fastingBloodSugarController.text = value.toString();
+                      widget.diabetesInput.fastingBloodSugar = value.toDouble();
                     },
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'HbA1c',
+                    controller: hbA1cController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 4.0,
+                    max: 14.0,
+                    hint: '%',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      hbA1cController.text = value.toString();
+                      widget.diabetesInput.hbA1c = value.toDouble();
                     },
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'Serum Creatinine',
+                    controller: serumCreatinineController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 0.4,
+                    max: 2.0,
+                    hint: 'mg/dL',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      serumCreatinineController.text = value.toString();
+                      widget.diabetesInput.serumCreatinine = value.toDouble();
                     },
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'Bun Levels',
+                    controller: bunLevelsController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 5,
+                    max: 30,
+                    hint: 'mg/dL',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      bunLevelsController.text = value.toString();
+                      widget.diabetesInput.bunLevels = value.toDouble();
                     },
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'Cholesterol Total',
+                    controller: cholesterolTotalController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 100,
+                    max: 300,
+                    hint: 'mg/dL',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      cholesterolTotalController.text = value.toString();
+                      widget.diabetesInput.cholesterolTotal = value.toDouble();
                     },
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'Cholesterol LDL',
+                    controller: cholesterolLDLController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 50,
+                    max: 200,
+                    hint: 'mg/dL',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      cholesterolLDLController.text = value.toString();
+                      widget.diabetesInput.cholesterolLDL = value.toDouble();
                     },
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
-                    controller: weightController,
+                    label: 'Cholesterol HDL',
+                    controller: cholesterolHDLController,
                     isNumberPicker: true,
-                    min: 0,
-                    max: 500,
-                    hint: 'kg',
+                    min: 20,
+                    max: 100,
+                    hint: 'mg/dL',
                     onNumberPicked: (value) {
-                      weightController.text = value.toString();
-                      widget.diabetesInput.weight = value.toDouble();
+                      cholesterolHDLController.text = value.toString();
+                      widget.diabetesInput.cholesterolHDL = value.toDouble();
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  InputBox(
+                    label: 'Cholesterol Triglycerides',
+                    controller: cholesterolTriglyceridesController,
+                    isNumberPicker: true,
+                    min: 50,
+                    max: 300,
+                    hint: 'mg/dL',
+                    onNumberPicked: (value) {
+                      cholesterolTriglyceridesController.text = value.toString();
+                      widget.diabetesInput.cholesterolTriglycerides = value.toDouble();
                     },
                   ),
 
