@@ -94,9 +94,9 @@ class _LifestyleState extends State<Lifestyle> {
                   InputSlider(
                     label: 'Alcohol Consumption',
                     min: 0,
-                    max: 10,
-                    divisions: 10,
-                    unit: 'glass/week', //?masih harus dipastikan
+                    max: 20,
+                    divisions: 20,
+                    unit: 'glass/week',
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.alcoholConsumption = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
@@ -109,7 +109,7 @@ class _LifestyleState extends State<Lifestyle> {
                     min: 0,
                     max: 10,
                     divisions: 10,
-                     // Unit ?masih harus dipastikan
+                    unit: "Score",
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.dietQuality = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
@@ -119,10 +119,10 @@ class _LifestyleState extends State<Lifestyle> {
                   SizedBox(height: 20),
                   InputSlider(
                     label: 'Sleep Quality',
-                    min: 0,
+                    min: 4,
                     max: 10,
-                    divisions: 10,
-                    //unit ?masih harus dipastikan
+                    divisions: 6,
+                    unit: "Score",
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.sleepQuality = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
@@ -135,7 +135,7 @@ class _LifestyleState extends State<Lifestyle> {
                     min: 0,
                     max: 10,
                     divisions: 10,
-                    // Unit ?masih harus dipastikan
+                    unit: "Physical ativity in hours/week",
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.physicalActivity = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya

@@ -70,7 +70,7 @@ class _LifeQualityState extends State<LifeQuality> {
                     min: 0,
                     max: 100,
                     divisions: 200,
-                    //unit ?masih harus dipastikan
+                    unit: "Score",
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.qualityOfLifeScore = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
@@ -172,7 +172,7 @@ class _LifeQualityState extends State<LifeQuality> {
                   Row(
                     children: [
                       Expanded(child: PrimaryButton(
-                          label: 'Good',
+                          label: 'Poor',
                           isToggle: true,
                           isSelected: waterQuality,
                           color: waterQuality
@@ -184,7 +184,7 @@ class _LifeQualityState extends State<LifeQuality> {
                           onPressed: () => _waterQuality(true))),
                       SizedBox(width: 8),
                       Expanded(child: PrimaryButton(
-                          label: 'Bad',
+                          label: 'Good',
                           isToggle: true,
                           isSelected: !waterQuality,
                           color: waterQuality

@@ -45,9 +45,9 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                   InputSlider(
                     label: 'Medical Checkup Frequency',
                     min: 0,
-                    max: 10,
-                    divisions: 20,
-                    //unit masih harus dipastikan
+                    max: 4,
+                    divisions: 4,
+                    unit: 'times per year',
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.medicalCheckupsFrequency = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
@@ -60,7 +60,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     min: 0,
                     max: 10,
                     divisions: 20,
-                    // Unit ?masih harus dipastikan
+                    unit: "Score",
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.medicationAdherence = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
@@ -73,7 +73,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     min: 0,
                     max: 10,
                     divisions: 20,
-                    //unit ?masih harus dipastikan
+                    unit: "Score",
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.healthLiteracy = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
