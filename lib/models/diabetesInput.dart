@@ -234,4 +234,51 @@ class DiabetesInputModel {
       'antidiabeticMedications': antidiabeticMedications,
     };
   }
+
+  List<double> toList() {
+    return [
+      age?.toDouble() ?? 0.0,                                 // 0
+      bmi,                                                    // 1
+      smoking.toDouble(),                                     // 2
+      alcoholConsumption,                                     // 3
+      physicalActivity,                                       // 4
+      dietQuality,                                            // 5
+      sleepQuality,                                           // 6
+      familyHistoryDiabetes?.toDouble() ?? 0.0,               // 7
+      gestationalDiabetes?.toDouble() ?? 0.0,                 // 8
+      polycysticOvarySyndrome?.toDouble() ?? 0.0,             // 9
+      previousPreDiabetes?.toDouble() ?? 0.0,                 // 10
+      hypertension.toDouble(),                                // 11
+      systolicBloodPressure.toDouble(),                       // 12
+      diastolicBloodPressure.toDouble(),                      // 13
+      fastingBloodSugar,                                      // 14
+      hbA1c,                                                  // 15
+      serumCreatinine,                                        // 16
+      bunLevels,                                              // 17
+      cholesterolTotal,                                       // 18
+      cholesterolLDL,                                         // 19
+      cholesterolHDL,                                         // 20
+      cholesterolTriglycerides,                               // 21
+      antihypertensiveMedications.toDouble(),                 // 22
+      statins.toDouble(),                                     // 23
+      antidiabeticMedications.toDouble(),                     // 24
+      frequentUrination.toDouble(),                           // 25
+      excessiveThirst.toDouble(),                             // 26
+      unexplainedWeightLoss.toDouble(),                       // 27
+      fatigueLevels,                                          // 28
+      blurredVision.toDouble(),                               // 29
+      slowHealingSores.toDouble(),                            // 30
+      tinglingHandsFeet.toDouble(),                           // 31
+      qualityOfLifeScore,                                     // 32
+      heavyMetalsExposure.toDouble(),                         // 33
+      occupationalExposureChemicals.toDouble(),               // 34
+      waterQuality.toDouble(),                                // 35
+      medicalCheckupsFrequency,                               // 36
+      medicationAdherence,                                    // 37
+      healthLiteracy,                                         // 38
+    ];
+  }
+
 }
+
+

@@ -9,8 +9,8 @@ class InputBox extends StatelessWidget {
   final TextInputType keyboardType;
   final bool isDatePicker;
   final bool isNumberPicker;
-  final int? min;
-  final int? max; //nggak yakin integer or not
+  final num? min;
+  final num? max; //nggak yakin integer or double
   final Function(int)? onNumberPicked;
   final VoidCallback? onTap; // untuk trigger DatePicker atau NumberPicker
 
@@ -79,7 +79,7 @@ class InputBox extends StatelessWidget {
 
   //Menampilkan modal bottom sheet dengan NumberPicker
   void _showNumberPicker(BuildContext context) {
-    int currentValue = int.tryParse(controller.text) ?? min!;
+    num currentValue = int.tryParse(controller.text) ?? min!;
 
     showDialog(
       context: context,
@@ -99,9 +99,9 @@ class InputBox extends StatelessWidget {
                 StatefulBuilder(
                   builder: (context, setState) {
                     return NumberPicker(
-                      value: currentValue,
-                      minValue: min!,
-                      maxValue: max!,
+                      value: currentValue.toInt(),
+                      minValue: min!.toInt(),
+                      maxValue: max!.toInt(),
                       selectedTextStyle: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
                       onChanged: (value) {
                         setState(() {
@@ -123,7 +123,7 @@ class InputBox extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         controller.text = currentValue.toString(); // Simpan pilihan
-                        onNumberPicked!(currentValue);
+                        onNumberPicked!(currentValue.toInt());
                         Navigator.pop(context);
                       },
                       child: Text("OK", style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color)),

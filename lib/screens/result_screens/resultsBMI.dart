@@ -1,6 +1,8 @@
+import 'package:Madhumeha/screens/input_screens/lifestyle.dart';
 import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/models/diabetesInput.dart';
+import 'package:Madhumeha/screens/input_screens/lifestyle.dart';
 
 class ResultsBMI extends StatefulWidget {
   final DiabetesInputModel diabetesInput;
@@ -97,7 +99,8 @@ class _ResultsBMIState extends State<ResultsBMI> {
                             textColor: Theme.of(context).scaffoldBackgroundColor,
                             width: 180,
                             onPressed: () {
-                              // Tambahkan navigasi ke screen berikutnya
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => Lifestyle(diabetesInput: widget.diabetesInput)));
                             },
                           ),
                         ),
