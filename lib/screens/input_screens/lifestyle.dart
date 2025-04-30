@@ -1,8 +1,6 @@
 import 'package:Madhumeha/screens/input_screens/lifeQuality.dart';
 import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
-import 'package:Madhumeha/widgets/inputBox.dart';
-import 'package:Madhumeha/widgets/dropDown.dart';
 import 'package:Madhumeha/widgets/inputSlider.dart';
 import 'package:Madhumeha/models/diabetesInput.dart';
 
@@ -119,9 +117,9 @@ class _LifestyleState extends State<Lifestyle> {
                   SizedBox(height: 20),
                   InputSlider(
                     label: 'Sleep Quality',
-                    min: 4,
+                    min: 0,
                     max: 10,
-                    divisions: 6,
+                    divisions: 10,
                     unit: "Score",
                     onChanged: (value) {
                       setState(() {
@@ -135,7 +133,7 @@ class _LifestyleState extends State<Lifestyle> {
                     min: 0,
                     max: 10,
                     divisions: 10,
-                    unit: "Physical ativity in hours/week",
+                    unit: "hours/week",
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.physicalActivity = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya

@@ -47,7 +47,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     min: 0,
                     max: 4,
                     divisions: 4,
-                    unit: 'times per year',
+                    unit: 'times/year',
                     onChanged: (value) {
                       setState(() {
                         widget.diabetesInput.medicalCheckupsFrequency = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya

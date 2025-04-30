@@ -33,6 +33,11 @@ class _MadhumehaAppState extends State<MadhumehaApp> {
       theme: isDarkMode ? AppTheme.dark : AppTheme.light,
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
+    // initialRoute: '/',
+    //   routes: {
+    //     '/': (context) => HomeScreen(),
+    //     '/result': (context) => ResultScreen(),
+    //   },
     );
   }
 }

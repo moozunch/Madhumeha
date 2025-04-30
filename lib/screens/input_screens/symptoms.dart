@@ -165,14 +165,13 @@ class _SymptomsState extends State<Symptoms> {
                   ),
                   SizedBox(height: 20),
                   InputSlider(
-                    label: 'Health Literacy',
+                    label: 'Fatigue Level',
                     min: 0,
                     max: 10,
                     divisions: 20,
-                    //unit ?masih harus dipastikan
                     onChanged: (value) {
                       setState(() {
-                        widget.diabetesInput.healthLiteracy = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
+                        widget.diabetesInput.fatigueLevels = value; //langsung disimpan disini tanpa perlu state dulu dibuat diatasnya
                       });
                     },
                   ),

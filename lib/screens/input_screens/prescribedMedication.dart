@@ -3,6 +3,9 @@ import 'package:Madhumeha/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/models/diabetesInput.dart';
 
+import '../../services/predictor.dart';
+import '../result_screens/resultsDiabetes.dart';
+
 class PrescribedMedication extends StatefulWidget {
   final DiabetesInputModel diabetesInput; //karena dijadikan parameter, perlu diinisialisasi deluan
   PrescribedMedication({super.key, required this.diabetesInput}); //seketika class ini jadi perlu parameter, ini disebut constructor
@@ -52,7 +55,7 @@ class _PrescribedMedicationState extends State<PrescribedMedication> {
                   SizedBox(
                     child: Text(
                       textAlign: TextAlign.start,
-                      'Life Quality and Environment',
+                      'Prescribed Medication',
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
@@ -198,16 +201,46 @@ class _PrescribedMedicationState extends State<PrescribedMedication> {
                               }),),
                         SizedBox(width: 8),
                         Expanded(
-                            child: PrimaryButton(
-                                label: 'Next',
-                                color: Theme.of(context).primaryColor,
-                                textColor: Theme.of(context).scaffoldBackgroundColor,
-                                width: 180,
-                                onPressed: () {
-                                  // Navigator.push(context,
-                                  //     MaterialPageRoute(builder: (context) => ResultsDiabetes(diabetesInput: widget.diabetesInput)));
-                                })
+                          child: PrimaryButton(
+                            label: 'Predict',
+                            color: Theme.of(context).primaryColor,
+                            textColor: Theme.of(context).scaffoldBackgroundColor,
+                            width: 180,
+                            onPressed: () async {
+                              try {
+                                // Tampilkan loading
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (_) => const Center(child: CircularProgressIndicator()),
+                                );
+
+                                // Panggil model prediksi
+                                final result = await PredictorService.predict(widget.diabetesInput);
+
+                                // Tutup loading
+                                Navigator.of(context).pop();
+
+                                // Navigasi langsung ke ResultsDiabetes
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ResultsDiabetes(
+                                      diabetesInput: widget.diabetesInput,
+                                    ),
+                                    settings: RouteSettings(arguments: result),
+                                  ),
+                                );
+                              } catch (e) {
+                                Navigator.of(context).pop(); // pastikan loading tertutup
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Prediction failed: $e')),
+                                );
+                              }
+                            },
+                          ),
                         ),
+
                       ]
                   )
                   //lanjutan disini
