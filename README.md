@@ -1,16 +1,39 @@
-# madhumeha
+# Madhumeha
+Diabetes risk prediction assistant app built with Flutter and TensorFlow Lite.
 
-Personal Diabetes diagnosis assistant for healthy lifestyle with neural networks binary classification
+## Overview
+Madhumeha is a health-focused mobile application designed to predict the risk of diabetes using a machine learning model trained on 39 comprehensive health-related features. The app is especially useful for healthcare workers, clinics, and medical students who need quick and portable inference tools.
 
-## Getting Started
+## Features
+- Flutter-based cross-platform mobile application
+- On-device ML inference using TensorFlow Lite
+- Input form for 39 health-related features, including:
+    - Personal & family history
+    - Lifestyle habits
+    - Medical symptoms & lab values
+- Clean UI with categorized input screens
+- RobustScaler preprocessing reproduced in Dart
+- Fast binary classification: High Risk vs Low Risk
 
-This project is a starting point for a Flutter application.
+## Tech Stack
+- **Frontend**: Flutter (Dart)
+- **Backend ML Model**: Python, TensorFlow, RobustScaler
+- **Model Deployment**: TFLite
+- **State Management**: setState (simple architecture)
 
-A few resources to get you started if this is your first Flutter project:
+## Model 
+- Uploaded TFLite and H5 [Repository](https://github.com/moozunch/Neural-Networks-Diabetes-Binary-Classification.git) or [Kaggle](https://www.kaggle.com/code/annisaputriaprilia/diabetes-binary-classification-tested)  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Use Case
+**Primary Target:**
+- Healthcare providers in clinics or community centers
+- Medical students & researchers
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Future Expansion:**
+- Lite version with reduced features for the general public
+
+## Author
+Developed with ❤️ by Annisa Putri Aprilia
+
+## License
+This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.

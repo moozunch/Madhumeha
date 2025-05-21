@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             SizedBox(height: 10),
             Text(
-              'Your Personal Diabetes diagnosis assistant for healthy lifestyle.dart',
+              'Diabetes Risk Predictor',
               style: Theme.of(context).textTheme.bodyMedium, textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
