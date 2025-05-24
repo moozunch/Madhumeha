@@ -1,6 +1,7 @@
 import 'package:Madhumeha/screens/input_screens/personalInformation.dart';
 import 'package:flutter/material.dart';
 import 'package:Madhumeha/widgets/primaryButton.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class BoardingScreen extends StatelessWidget {
@@ -12,14 +13,20 @@ class BoardingScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.import_contacts),
-            SizedBox(height: 20,),
+            SvgPicture.asset(
+              'assets/iconsvg.svg',
+              width: 100,
+              height: 100,
+            ),
+            SizedBox(height: 20),
             Text(
-              'Healthy lifestyle.dart kamu dimulai sekarang. \n Before we start let’s fill all \nthe information first.',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
-              textAlign: TextAlign.center,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
+              'Madhumeha',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 5),
+            Text(
+              'Diabetes Risk Predictor',
+              style: Theme.of(context).textTheme.bodyMedium, textAlign: TextAlign.center,
             ),
             SizedBox(height: 10,),
             PrimaryButton(

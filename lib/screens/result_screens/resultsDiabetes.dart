@@ -57,12 +57,15 @@ class _ResultsDiabetesState extends State<ResultsDiabetes> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 10),
-                    Text(
-                      isPositive
-                          ? 'Please consult with a healthcare professional as soon as possible.'
-                          : 'Keep up the healthy lifestyle!',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      textAlign: TextAlign.center,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        isPositive
+                            ? 'This prediction is for informational purposes and may be inaccurate. Further clinical evaluation is recommended.'
+                            : 'This prediction is for informational purposes and may be inaccurate. Clinical judgment and further evaluation are advised if symptoms persist or if clinically indicated.',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     const SizedBox(height: 40),
                     Row(

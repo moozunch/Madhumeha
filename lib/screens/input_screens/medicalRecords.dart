@@ -46,7 +46,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     label: 'Medical Checkup Frequency',
                     min: 0,
                     max: 4,
-                    divisions: 4,
+                    divisions: 40,
                     unit: 'times/year',
                     onChanged: (value) {
                       setState(() {
