@@ -1,6 +1,5 @@
 # Madhumeha
-Diabetes risk prediction assistant app built with Flutter and TensorFlow Lite.
-
+![App Logo](assets/thumbnail.png)
 ## Overview
 Madhumeha is a health-focused mobile application designed to predict the risk of diabetes using a machine learning model trained on 39 comprehensive health-related features. The app is especially useful for healthcare workers, clinics, and medical students who need quick and portable inference tools.
 
