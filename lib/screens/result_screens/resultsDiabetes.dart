@@ -58,12 +58,12 @@ class _ResultsDiabetesState extends State<ResultsDiabetes> {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Text(
                         isPositive
                             ? 'This prediction is for informational purposes and may be inaccurate. Further clinical evaluation is recommended.'
                             : 'This prediction is for informational purposes and may be inaccurate. Clinical judgment and further evaluation are advised if symptoms persist or if clinically indicated.',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: Theme.of(context).textTheme.bodySmall,
                         textAlign: TextAlign.center,
                       ),
                     ),
