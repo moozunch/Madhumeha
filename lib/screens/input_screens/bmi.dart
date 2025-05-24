@@ -56,7 +56,7 @@ class _BMIState extends State<BMI> {
                   ),
                   SizedBox(height: 40),
                   InputBox(
-                      label: 'Height',
+                      label: 'Height (cm)',
                       controller: heightController,
                       isNumberPicker: true,
                       min: 50,
@@ -71,7 +71,7 @@ class _BMIState extends State<BMI> {
                   ),
                   SizedBox(height: 20),
                   InputBox(
-                    label: 'Weight',
+                    label: 'Weight (kg)',
                     controller: weightController,
                     isNumberPicker: true,
                     min: 0,

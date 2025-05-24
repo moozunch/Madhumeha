@@ -2,6 +2,7 @@ import 'package:Madhumeha/screens/boardingScreen.dart';
 import 'package:flutter/material.dart';
 import 'input_screens/personalInformation.dart';
 // import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -34,13 +35,17 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.import_contacts),
+            SvgPicture.asset(
+              'assets/iconsvg.svg',
+              width: 100,
+              height: 100,
+            ),
             SizedBox(height: 20),
             Text(
                 'Madhumeha',
-              style: Theme.of(context).textTheme.bodyMedium, 
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             Text(
               'Diabetes Risk Predictor',
               style: Theme.of(context).textTheme.bodyMedium, textAlign: TextAlign.center,
